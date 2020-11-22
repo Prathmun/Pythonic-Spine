@@ -1,0 +1,39 @@
+race
+	klingon
+	Science Miracle
+	Ferengi
+	Human
+	Betazoid
+	
+Class
+	Ships Councillor
+	Captain
+	Engineer
+	Security Officer
+	
+Equipment
+Opportunities
+
+episode
+	godlike creature
+	scenario
+		timeloop
+		delicate negotiation
+		
+		
+Player
+	Class
+	Race
+	
+	Equipment
+	Opportunities
+	
+	
+Game
+
+episode
+scenario
+
+Engine
+
+Scene
