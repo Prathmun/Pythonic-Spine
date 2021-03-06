@@ -2,26 +2,18 @@ from TheListBackEnd import *
 
 
 
-
-operationalframe = Block("Operational Frame",
-"Read the operation document for each Discipline from start to finish",
-"Establishes the operational frame enabling organization to be undertaken",
-5000,
-1)
-
-hud= Path("HUD", 
-"Object in hand",
-(operationalframe,), 2)
-
-
-
+gnaw = Block("Gnaw",
+"""Chew on a non-ficiton book. Try to stick to one at a time, reading linearly. No obligation to finish a book if it stops being interesting""",
+"Orients the sybmolic frame and deepens the library",
+2000,
+3)
 
 
 
 
 canopy = Path("Canopy",
 "The surface upon which both the sun and moon shine",
-(), 2)
+(gnaw,), 2)
 
 
 magus = Discipline("Magus", 
@@ -39,5 +31,5 @@ Manufactured history
 Simulated future
 
 """
-, 2, (hud,), 10.0)
+, 2, (canopy,), 10.0)
 #The Magus holds on to Evocations and Enchantments

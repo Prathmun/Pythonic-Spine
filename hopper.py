@@ -53,5 +53,5 @@ def slotfiller1():
 def hopperloader():
     slot0 = slotfiller0()
     slot1 = slotfiller1()
-    hopper = [slot0, slot1,]
+    return slot0, slot1
     

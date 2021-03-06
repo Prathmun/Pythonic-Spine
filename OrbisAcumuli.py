@@ -1,7 +1,9 @@
 #backend for orbisaccumuli
+from TheListBackEnd import *
 from pathandblocks import *
 from datetime import datetime, timedelta
 import dateutil.parser
+from pathandblocks import *
 from clint.textui import colored
 
                
@@ -17,14 +19,14 @@ def orbisaccumuli(block, useractivated):
     offcd = cooldownchecker(block)
     if offcd == True:	
 
-        if useractivated == "n":
+        if useractivated != "y":
             blockcharge=chargechecker(block)
             if blockcharge > 0:
                 blockcharge = blockcharge - 1		
-                blockmemory = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name + ".py"), "rb"))
+                blockmemory = pickle.load(open(("Blocks/" + block.name + ".py"), "rb"))
                 blockmemory.append(datetime.now())
-                pickle.dump(blockmemory, open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name + ".py"), "wb"))
-                pickle.dump(blockcharge, open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name + "chargecounter.py"), "wb"))
+                pickle.dump(blockmemory, open(("Blocks/" + block.name + ".py"), "wb"))
+                pickle.dump(blockcharge, open(("chargecounters/" + block.name + "chargecounter.py"), "wb"))
                         
 
             
@@ -39,11 +41,15 @@ def orbisaccumuli(block, useractivated):
                 time.sleep(3)
             else:
                 blockcharge = blockcharge + 1
-                with open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name + "chargecounter.py"), "wb") as blockaddress:
+                with open(("chargecounters/" + block.name + "chargecounter.py"), "wb") as blockaddress:
                     pickle.dump(blockcharge, blockaddress)
                         
 
-    
+def orbis_rotatus():
+    for disc in grossdisciplines:
+        for path in disc.paths:
+            for block in path.blocks:
+                orbisaccumuli(block, "n")
     
         
         
@@ -70,26 +76,36 @@ def orbisvox(segment):
         print (starline)
     
     
-def disclevelorbisvox(disc):
-    disclevelchargecounter = 0
-    chargecounter = 0
+    
+    
+    
+def disclevelorbisvox(disc, counter):
+    total_blocks, total_blocks_off_cd =disc_level_activation_counter(disc)
+    disclevelchargecounter = disc_level_charge_checker(disc)
+    
+    ### #Disc bark
+
+    print(str(counter) + " " + disc.name  + " " + str(total_blocks_off_cd) + "/" + str(total_blocks) + " active" )
+    print ("  " + "Cumalitve Charge: " + colored.cyan(str(disclevelchargecounter)))
+    
+    ### #Path bark
     for path in disc.paths:
-        for block in path.blocks:
-            blockcharge = chargechecker(block)
-            while chargecounter < blockcharge:
-                chargecounter = chargecounter + 1
-        disclevelchargecounter = disclevelchargecounter + chargecounter
-        disclevelchargecounter = str(disclevelchargecounter)
-    print ("  " + "Cumalitve Charge: " + colored.cyan(disclevelchargecounter))
+        total_path_blocks, offcdcounter = blockactivationcounter(path)
+ 
+        print ("    " + path.name + "    " + str(offcdcounter) + "/" + str(total_path_blocks) )
+        print (" ")
+        
+    
+    
+    
+    
+    
+    
+    
+    
     
 def pathlevelorbisvox(path):
-    pathlevelchargecounter = 0
-    chargecounter = 0
-    for block in path.blocks:
-        blockcharge = chargechecker(block)
-        while chargecounter < blockcharge:
-            chargecounter = chargecounter + 1
-        pathlevelchargecounter = pathlevelchargecounter + chargecounter
+    pathlevelchargecounter = path_level_charge_checker(path)
     pathlevelchargecounter = str(pathlevelchargecounter)
     print ("  " + "Cumalitve Charge: " + colored.cyan(pathlevelchargecounter))
     

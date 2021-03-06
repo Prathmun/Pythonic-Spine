@@ -45,27 +45,26 @@ def picklejarfactory(grossdisciplines):
         for path in discipline.paths:
             for block in path.blocks:
                 try:
-                    pickletext = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name +  ".py"), "rb"))
+                    pickletext = pickle.load(open(("Blocks/" + block.name +  ".py"), "rb"))
                 except (IndexError, IOError,):
-                    spawner = open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name +  ".py"), "a")
+                    spawner = open(("Blocks/" + block.name +  ".py"), "a")
                     spawner.close
-                    #unsure if this is the correct way to initialize the datetime object.Just marking this line so that we can test it when the archecture is runnable.
                     thenow = datetime.now()
                     thethen = (thenow + timedelta(days=-1500))
                     picklejar = [thethen,]
-                    pickle.dump(picklejar, open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name +  ".py"), "wb"))
+                    pickle.dump(picklejar, open(("Blocks/" + block.name +  ".py"), "wb"))
 
 
     for discipline in grossdisciplines:
         for path in discipline.paths:
             for block in path.blocks:
                 try:
-                    pickletext = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name +   "chargecounter.py"), "rb"))
+                    pickletext = pickle.load(open(("chargecounters/" + block.name +   "chargecounter.py"), "rb"))
                 except (IOError, EOFError, IndexError,):
-                    spawner = open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name +  "chargecounter.py"), "a")
+                    spawner = open(("chargecounters/" + block.name +  "chargecounter.py"), "a")
                     spawner.close 
                     picklejar = 1 
-                    pickle.dump(picklejar, open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name +  "chargecounter.py"), "wb"))
+                    pickle.dump(picklejar, open(("chargecounters/" + block.name +  "chargecounter.py"), "wb"))
 
 
 
@@ -79,7 +78,7 @@ def picklejarfactory(grossdisciplines):
 
 def cooldownchecker(block):
     thenow = datetime.now()
-    blockmemory = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name + ".py"), "rb"))
+    blockmemory = pickle.load(open(("Blocks/" + block.name + ".py"), "rb"))
     blockactivation = blockmemory[-1]
     timesinceblockactivation = (thenow - blockactivation)
 		#If the following is true then the block is avaliable.
@@ -97,15 +96,25 @@ def cooldownchecker(block):
 
 
 def chargechecker(block):
-    blockchargememory = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/chargecounters/" + block.name +  "chargecounter" + ".py"), "rb"))
-    #unclear if the unpickled object will need to be converted into an int like in the legacy code. I don't think so, but I made this marker to suggest this possibility in case an error appears when we get the architecture running. Delete later if no error!
-    return blockchargememory
+    blockchargememory = pickle.load(open(("chargecounters/" + block.name +  "chargecounter" + ".py"), "rb"))
+    return int(blockchargememory)
 
+def path_level_charge_checker(path):
+    total_charge_counter = 0
+    for each in path.blocks:
+        total_charge_counter = total_charge_counter + chargechecker(each)
+    return total_charge_counter
+
+def disc_level_charge_checker(disc):
+    sum_charge_counter = 0
+    for each in disc.paths:
+        sum_charge_counter = sum_charge_counter + path_level_charge_checker(each)
+        return sum_charge_counter
 
 
 def refreshbarker(block):
     thenow = datetime.now()
-    blockmemory = pickle.load(open(("C:/Users/Prathmun/Documents/Python Stuff/Blocks/" + block.name + ".py"), "rb"))
+    blockmemory = pickle.load(open(("Blocks/" + block.name + ".py"), "rb"))
     blockactivation = blockmemory[-1]
     print (thenow + (block.cooldown - (thenow - blockactivation)))
    
@@ -119,13 +128,23 @@ def refreshbarker(block):
 
 
 def blockactivationcounter(path):
-	for block in path.blocks:
-			total = total + 1
-			offcd = cooldownchecker(block)
-			if offcd == False:
-				offcdcounter = offcdcounter + 1
-		
-		
+    counter_total = 0
+    off_cd_counter = 0
+    for block in path.blocks:
+            counter_total = counter_total + 1
+            offcd = cooldownchecker(block)
+            if offcd == False:
+                off_cd_counter = off_cd_counter + 1
+    return counter_total, off_cd_counter
+
+def disc_level_activation_counter(disc):
+    total_blocks = 0
+    blocks_off_cd = 0
+    for path in disc.paths:
+        temp_blocks, temp_blocks_off_cd = blockactivationcounter(path)
+        total_blocks = total_blocks + temp_blocks
+        blocks_off_cd = blocks_off_cd + temp_blocks_off_cd
+    return total_blocks, blocks_off_cd
 
 
 

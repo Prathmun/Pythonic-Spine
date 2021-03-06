@@ -2,10 +2,9 @@ from TheListBackEnd import *
 from MonkContent import *
 from MagusContent import *
 from Cyberneticist import *
-from IndustrialistContent import *
 
 
-grossdisciplines =[monk, magus, cyberneticist, industrialist,]
+grossdisciplines =[monk, magus, cyberneticist]
 
 systemicexit = Block("Systemic Exit",
 "Graduates us intelligently to another intentional system",

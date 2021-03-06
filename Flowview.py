@@ -46,4 +46,3 @@ def cycleview():
                 refreshbarker(block)
                 time.sleep(waittime)
                 whitespace(50)
-    cycleview()
