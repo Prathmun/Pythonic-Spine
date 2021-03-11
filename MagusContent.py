@@ -6,7 +6,7 @@ gnaw = Block("Gnaw",
 """Chew on a non-ficiton book. Try to stick to one at a time, reading linearly. No obligation to finish a book if it stops being interesting""",
 "Orients the sybmolic frame and deepens the library",
 2000,
-3)
+15)
 
 
 

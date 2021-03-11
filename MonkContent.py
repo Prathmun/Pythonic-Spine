@@ -17,8 +17,25 @@ shaping_the_cup = Block("Shaping The Cup",
 """Flow""",
 """Stand on the Earth, Stoke the flame, move the water, free the air""",
 
-2000,
-5)
+5040,
+3)
+
+running = Block("Running",
+"Run!",
+'Flushes the system, builds endorphins and makes your heart happy',
+2520,
+4)
+
+handstand_conditioning = Block('Handstand Conditioning',
+"Work through the handstand conditioning Brianna put together for you",
+"Inches towards that most visible of inversions",
+1080,
+2)
+
+
+
+
+
 
 
 
@@ -29,7 +46,7 @@ shaping_the_cup = Block("Shaping The Cup",
 
 earth = Path("Earth",
 "Yin, ground, darkness",
-(shaping_the_cup,),
+(shaping_the_cup, running, handstand_conditioning),
 0)
 
 
