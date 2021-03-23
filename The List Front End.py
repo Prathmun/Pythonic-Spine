@@ -4,10 +4,11 @@ import dateutil.parser
 import random
 import time
 import threading 
-from pathandblocks import *
-from hopper import *
-from OrbisAcumuli import *
-from Flowview import *
+from TheListBackEnd import whitespace, cooldownchecker, colored, refreshbarker, picklejarfactory
+from pathandblocks import grossdisciplines
+from hopper import hopperloader
+from OrbisAcumuli import orbisaccumuli, orbis_rotatus, orbisvox, disclevelorbisvox, pathlevelorbisvox
+from Flowview import cycleview
 import os    
 
 
@@ -16,9 +17,9 @@ import os
             #### Anchor for visual output     ####					
             ####                              ####
 
-
-def interface():
-    #clears the stage
+    
+def facade():
+       #clears the stage
     whitespace(35)
     #Checks cooldowns, and turns over the cycle
     orbis_rotatus()
@@ -41,19 +42,19 @@ def interface():
     #adds gui for selecting the cycle view
             ###
     viewslot = 0
-    for each in grossdisciplines:
+    for _ in grossdisciplines:
         viewslot = viewslot + 1
     viewslot = str(viewslot)
     whitespace(2)
     print (viewslot + " Cycle View" )
     viewslot = int(viewslot)
     
-#**************************************************************	
+	
     
     #Adds the gui for selecting the hopper
 
     hopperslot1 = 1    
-    for each in grossdisciplines:
+    for _ in grossdisciplines:
         hopperslot1 = hopperslot1 + 1
     hopperslot2 = hopperslot1 + 1
     
@@ -67,38 +68,13 @@ def interface():
     print (str(hopperslot2)  + " " + slot1.title)
     print (slot1.process)
 
-
-
-
-
-
-
-
-
-
-
-    ###
-#**************************************************************	
-    ###
-    
-    #Processes the choice of discipline
-    whitespace(2)
-    discchoice = input("Choose the discipline to explore")
-    discchoice = int(discchoice)
-    
-    
-    ###
-#**************************************************************
-    ###
-    
-    
-    
-    
-    
-    
-    
-    
-    #Procceses the input if the input would select the hopper
+def hopperchoice(discchoice):
+        #Procceses the input if the input would select the hopper
+    slot0, slot1 = hopperloader()
+    hopperslot1 = 1    
+    for _ in grossdisciplines:
+        hopperslot1 = hopperslot1 + 1
+    hopperslot2 = hopperslot1 + 1
     if discchoice == hopperslot1:
         whitespace(10)
         print ("Name: " + slot0.title)
@@ -120,33 +96,9 @@ def interface():
         answer = input("Activate this block's cooldown?")
         if answer == "y":
             orbisaccumuli(slot1, "y")
-            
         interface()
-    
 
-#**************************************************************
-
-
-########Process the choice if it would selct the viewslot#########
-
-
-
-
-    if discchoice == viewslot:
-        for i in range (5):
-            cycleview()
-            time.sleep(15)
-            interface()
-    
-    
-    
-    
-    ###
-    
-    #####displays the paths avaliable####
-    
-    ###
-    
+def discprocessor(discchoice):
     discchoice = grossdisciplines[discchoice]
     whitespace(20)
     print (discchoice.name)
@@ -179,13 +131,11 @@ def interface():
                 attritionstatus = "Avaliable."
             print ("    " + block.title + "  " + attritionstatus)
             orbisvox(block)
-            
-        
-        
-    #Processes the path request
+
+def pathprocessor(discchoice):
     pathchoice = input("Choose a path to explore")		
     
-    
+    discchoice=grossdisciplines[discchoice]
     pathchoice = int(pathchoice)
     intermediary = discchoice.paths
     pathchoice = intermediary[pathchoice]
@@ -214,9 +164,9 @@ def interface():
         orbisvox(block)
         whitespace(2)
     whitespace(2)
-    
-    
-    #processes the block request
+    return(pathchoice)
+
+def blockprocessor(pathchoice):
     blockchoice = input("Choose a block to expand")
     blockchoice = int(blockchoice)
     intermediary = pathchoice.blocks
@@ -237,11 +187,64 @@ def interface():
     addcharge =  input("Add a charge?")
     if addcharge == "y":
         orbisaccumuli(blockchoice, "y")
+
+
+def interface():
+    facade()
+
+
+    #Processes the choice of discipline
+    whitespace(2)
+    discchoice = input("Choose the discipline to explore")
+    discchoice = int(discchoice)
+        
+    
+    hopperchoice(discchoice)
+    
+
+    #Process the choice if it would selct the viewslot#########
+
+    ###
+    viewslot = 0
+    for _ in grossdisciplines:
+        viewslot = viewslot + 1
+
+    if discchoice == viewslot:
+        for _ in range (5):
+            cycleview()
+            time.sleep(15)
+            interface()
+    
+    
+    
+    
+    ###
+    
+    #####displays the paths avaliable####
+    
+    ###
+    
+    discprocessor(discchoice)
+            
+    ###       
+        
+    #Processes the path request
+
+    ###
+    pathchoice = pathprocessor(discchoice)
+    
+   
+    
+    ###
+
+    #processes the block request
+
+    ###
+    blockprocessor(pathchoice)
         
     
 
 picklejarfactory(grossdisciplines)
 
 
-for i in range(1000000):
-    interface()
+interface()

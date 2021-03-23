@@ -18,6 +18,7 @@ import time
 thenow=datetime.now()
 
 def slotfiller0():	
+    thenow=datetime.now()
     grossblocks = []
     for disc in grossdisciplines:
         for path in disc.paths:
@@ -36,6 +37,7 @@ def slotfiller0():
  
 
 def slotfiller1():
+    thenow=datetime.now()
     grossblocks = []
     for disc in grossdisciplines:
         for path in disc.paths:

@@ -69,13 +69,6 @@ def picklejarfactory(grossdisciplines):
 
 
 
-
-
-
-
-
-
-
 def cooldownchecker(block):
     thenow = datetime.now()
     blockmemory = pickle.load(open(("Blocks/" + block.name + ".py"), "rb"))
@@ -88,12 +81,6 @@ def cooldownchecker(block):
     if block.cooldown > timesinceblockactivation:
         return False
         
-
-
-
-
-
-
 
 def chargechecker(block):
     blockchargememory = pickle.load(open(("chargecounters/" + block.name +  "chargecounter" + ".py"), "rb"))
