@@ -33,7 +33,18 @@ handstand_conditioning = Block('Handstand Conditioning',
 2)
 
 
-
+#Wind up
+    #Sidebend squat cycle
+    #Goddess Squat Thoracic Cat Cow
+    #Sidebody extensions
+#Sustain
+    #neck, and extension
+    #Twists
+    #figure 4
+#Wind down/after care
+    #Quad Stretch
+    #Palattis Lunge
+    #Supportted Downward dog
 
 
 
