@@ -1,2 +1,4 @@
-
+/chargecounters
+/Blocks
+/__pycache__
 *.pyc

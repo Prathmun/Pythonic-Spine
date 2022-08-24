@@ -2,22 +2,18 @@ from TheListBackEnd import *
 
 
 
-active_feedback = Block("Active Feedback",
-"Read the workflowy report",
-"See what intentions you ratified, noted and modified yesterday",
-1000,
-6)
-#If we could make this reset daily rather then on a charge that would be preferable.
 
-mooc = Block("Mooc",
-"datascience course, syllabus item",
-"digital literacy yo.",
-2000,
+
+thecode = Block ("The Code",
+"Work through a mastey task on Khan academy.",
+"Familiarizes ourself with the codefication of western knowledge, particularly math. Additionally habituates the position of utilizing the monolith to be in the service of something other than dionysian hedonism.",
+1440,
 5)
 
 mycelium = Path("Mycelium",
 "Fibrous and Rhyzomatic",
-(active_feedback, mooc), 0)
+
+(thecode,), 0)
 
 cyberneticist = Discipline("Cyberneticist",
 """

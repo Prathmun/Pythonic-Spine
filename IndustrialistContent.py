@@ -11,10 +11,10 @@ from TheListBackEnd import *
 
 
 
-thecode = Block ("The Code",
-"Work through a mastey task on Khan academy.",
-"Familiarizes ourself with the codefication of western knowledge, particularly math. Additionally habituates the position of utilizing the monolith to be in the service of something other than dionysian hedonism.",
-1440,
+the_search = Block("The Search",
+"improve job search tools, actively hunt, or reach out to folks",
+"Look we put in the work to get the skills, lets get paid for them!",
+5040,
 5)
 
 
@@ -22,7 +22,7 @@ thecode = Block ("The Code",
 
 grid = Path("Grid",
 "Organizes the world",
-(thecode,),
+(the_search,),
 1)
 
 

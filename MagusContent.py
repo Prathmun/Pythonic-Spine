@@ -8,12 +8,18 @@ gnaw = Block("Gnaw",
 2000,
 15)
 
+power_suit =Block("Power Suit",
+"work on the pythonic spine, improve personal tools",
+"Continually improvement, time is our capital and this is how we continue to produce surplus value",
+5040,
+3)
+
 
 
 
 canopy = Path("Canopy",
 "The surface upon which both the sun and moon shine",
-(gnaw,), 2)
+(gnaw,power_suit), 2)
 
 
 magus = Discipline("Magus", 
