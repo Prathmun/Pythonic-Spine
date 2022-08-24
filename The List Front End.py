@@ -4,56 +4,39 @@ import dateutil.parser
 import random
 import time
 import threading 
-from TheListBackEnd import whitespace, cooldownchecker, colored, refreshbarker, picklejarfactory
+from TheListBackEnd import whitespace, cooldownchecker, colored, picklejarfactory
 from pathandblocks import grossdisciplines
 from hopper import hopperloader
 from OrbisAcumuli import orbisaccumuli, orbis_rotatus, orbisvox, disclevelorbisvox, pathlevelorbisvox
-from Flowview import cycleview
 import os    
+import pickle
 
 
         
             ####                              ####
             #### Anchor for visual output     ####					
             ####                              ####
-
+def refreshbarker(block):
+    thenow = datetime.now()
+    blockmemory = pickle.load(open(("Blocks/" + block.name + ".py"), "rb"))
+    blockactivation = blockmemory[-1]
+    print (thenow + (block.cooldown - (thenow - blockactivation)))
     
+    #Initial display
 def facade():
-       #clears the stage
+    #clears the stage
     whitespace(35)
     #Checks cooldowns, and turns over the cycle
-    orbis_rotatus()
-    
-    
-    
-        
-           
+    orbis_rotatus()     
     #Displays the choie of disciplines, the number of blocks contained, and the number of blocks off cooldown
     counter = 0
     for disc in grossdisciplines:
         whitespace(2)		
         disclevelorbisvox(disc, counter)
         counter = counter + 1
-        whitespace(2)
-        
-        
-                                             
-            ###
-    #adds gui for selecting the cycle view
-            ###
-    viewslot = 0
-    for _ in grossdisciplines:
-        viewslot = viewslot + 1
-    viewslot = str(viewslot)
-    whitespace(2)
-    print (viewslot + " Cycle View" )
-    viewslot = int(viewslot)
-    
-	
-    
+        whitespace(2)                          
     #Adds the gui for selecting the hopper
-
-    hopperslot1 = 1    
+    hopperslot1 = 0    
     for _ in grossdisciplines:
         hopperslot1 = hopperslot1 + 1
     hopperslot2 = hopperslot1 + 1
@@ -67,11 +50,12 @@ def facade():
     print (slot0.process)
     print (str(hopperslot2)  + " " + slot1.title)
     print (slot1.process)
-
+    #choice management
+    ## This is mostly going to be dross, as we make a single page interface
 def hopperchoice(discchoice):
         #Procceses the input if the input would select the hopper
     slot0, slot1 = hopperloader()
-    hopperslot1 = 1    
+    hopperslot1 = 0    
     for _ in grossdisciplines:
         hopperslot1 = hopperslot1 + 1
     hopperslot2 = hopperslot1 + 1
@@ -97,7 +81,6 @@ def hopperchoice(discchoice):
         if answer == "y":
             orbisaccumuli(slot1, "y")
         interface()
-
 def discprocessor(discchoice):
     discchoice = grossdisciplines[discchoice]
     whitespace(20)
@@ -131,7 +114,6 @@ def discprocessor(discchoice):
                 attritionstatus = "Avaliable."
             print ("    " + block.title + "  " + attritionstatus)
             orbisvox(block)
-
 def pathprocessor(discchoice):
     pathchoice = input("Choose a path to explore")		
     
@@ -165,7 +147,6 @@ def pathprocessor(discchoice):
         whitespace(2)
     whitespace(2)
     return(pathchoice)
-
 def blockprocessor(pathchoice):
     blockchoice = input("Choose a block to expand")
     blockchoice = int(blockchoice)
@@ -197,53 +178,20 @@ def interface():
     whitespace(2)
     discchoice = input("Choose the discipline to explore")
     discchoice = int(discchoice)
-        
-    
     hopperchoice(discchoice)
-    
-
-    #Process the choice if it would selct the viewslot#########
-
     ###
-    viewslot = 0
-    for _ in grossdisciplines:
-        viewslot = viewslot + 1
-
-    if discchoice == viewslot:
-        for _ in range (5):
-            cycleview()
-            time.sleep(15)
-            interface()
-    
-    
-    
-    
-    ###
-    
     #####displays the paths avaliable####
-    
     ###
-    
-    discprocessor(discchoice)
-            
+    discprocessor(discchoice)     
     ###       
-        
     #Processes the path request
-
     ###
     pathchoice = pathprocessor(discchoice)
-    
-   
-    
     ###
-
     #processes the block request
-
     ###
     blockprocessor(pathchoice)
         
-    
-
 picklejarfactory(grossdisciplines)
 
 
