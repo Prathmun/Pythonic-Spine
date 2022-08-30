@@ -4,12 +4,13 @@ import dateutil.parser
 import random
 import time
 import threading 
-from TheListBackEnd import whitespace, cooldownchecker, colored, picklejarfactory
-from pathandblocks import grossdisciplines
+from TheListBackEnd import whitespace, cooldownchecker, colored, picklejarfactory, disc_level_charge_checker
+from pathandblocks import ordered_disciplines
 from hopper import hopperloader
 from OrbisAcumuli import orbisaccumuli, orbis_rotatus, orbisvox, disclevelorbisvox, pathlevelorbisvox
 import os    
 import pickle
+
 
 
         
@@ -32,7 +33,7 @@ def facade():
     orbis_rotatus()     
     #Displays the choie of disciplines, the number of blocks contained, and the number of blocks off cooldown
     counter = 0
-    for disc in grossdisciplines:
+    for disc in ordered_disciplines:
         whitespace(2)		
         disclevelorbisvox(disc, counter)
         counter = counter + 1
@@ -40,7 +41,7 @@ def facade():
     #Adds the gui for selecting the hopper
 
 def discprocessor(discchoice):
-    discchoice = grossdisciplines[discchoice]
+    discchoice = ordered_disciplines[discchoice]
     whitespace(20)
     print (discchoice.name)
     whitespace(2)
@@ -75,7 +76,7 @@ def discprocessor(discchoice):
 def pathprocessor(discchoice):
     pathchoice = input("Choose a path to explore")		
     
-    discchoice=grossdisciplines[discchoice]
+    discchoice=ordered_disciplines[discchoice]
     pathchoice = int(pathchoice)
     intermediary = discchoice.paths
     pathchoice = intermediary[pathchoice]
@@ -136,7 +137,6 @@ def interface():
     whitespace(2)
     discchoice = input("Choose the discipline to explore")
     discchoice = int(discchoice)
-    hopperchoice(discchoice)
     ###
     #####displays the paths avaliable####
     ###
@@ -150,7 +150,7 @@ def interface():
     ###
     blockprocessor(pathchoice)
         
-picklejarfactory(grossdisciplines)
+picklejarfactory(ordered_disciplines)
 
 
 interface()

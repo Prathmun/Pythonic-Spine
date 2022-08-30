@@ -21,24 +21,18 @@ thenow=datetime.now()
 
 #2.0 to show you the block with the least charges
 
-def  slotfiller0():
+def hopper(disc):
     thenow=datetime.now()
     grossblocks = {}
-    for disc in grossdisciplines:
-        for path in disc.paths:
-            for block in path.blocks:
-            #Need to test this to see if this works for 0 charge
-                charge_count = chargechecker(block)
-                if charge_count not in grossblocks.keys():
-                    grossblocks[charge_count] = [block]
-                else:
-                    grossblocks[charge_count].append(block)
-    largest_key = max(grossblocks.keys())
-    return grossblocks[largest_key][0]
-#Also looking to see how to get the second slot to present something different.	
-
-#Might consider rolling this into the normal facade and taking out the hopper position entirely.
-#Using these functions to present needed tasks within a given discipline
+    for path in disc.paths:
+        for block in path.blocks:
+            charge_count = chargechecker(block)
+            if charge_count not in grossblocks.keys():
+                grossblocks[charge_count] = [block]
+            else:
+                grossblocks[charge_count].append(block)
+    smallest_key = min(grossblocks.keys())
+    return grossblocks[smallest_key][0]
 
 
 #Old version
@@ -62,19 +56,19 @@ def  slotfiller0():
 
  
 
-def slotfiller1():
-    thenow=datetime.now()
-    grossblocks = []
-    for disc in grossdisciplines:
-        for path in disc.paths:
-            for block in path.blocks:
-                cooldownboolean = cooldownchecker(block)
-                if cooldownboolean == True:
-                    grossblocks.append(block)
-        try:
-            return random.choice(grossblocks)
-        except(IndexError,):
-            return systemicexit
+# def slotfiller1():
+#     thenow=datetime.now()
+#     grossblocks = []
+#     for disc in grossdisciplines:
+#         for path in disc.paths:
+#             for block in path.blocks:
+#                 cooldownboolean = cooldownchecker(block)
+#                 if cooldownboolean == True:
+#                     grossblocks.append(block)
+#         try:
+#             return random.choice(grossblocks)
+#         except(IndexError,):
+#             return systemicexit
 
 
 	

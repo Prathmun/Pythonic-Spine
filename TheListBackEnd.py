@@ -28,7 +28,7 @@ class Block:
         self.process = colored.cyan(process)
         self.output = colored.green(output)
         self.cooldown = timedelta(minutes=(cooldown))
-        self.chargecap = chargecap
+        self.chargecap = chargecap * 10
 		
 	#Makes the files that we will be writing the pickles.	
 def picklejarfactory(grossdisciplines):

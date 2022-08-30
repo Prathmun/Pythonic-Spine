@@ -5,9 +5,16 @@ from MagusContent import *
 from MonkContent import *
 
 grossdisciplines =[monk, magus, cyberneticist, industrialist]
+ordered_disciplines = []
+discipline_dict = {}
+for disc in grossdisciplines:
+    key = disc_level_charge_checker(disc)
+    if key not in discipline_dict.keys():
+        discipline_dict[key] = [disc]
+    else:
+        discipline_dict[key].append(disc)
+for key in sorted(discipline_dict.keys()):
+    for disc in discipline_dict[key]:
+        ordered_disciplines.append(disc)
 
-systemicexit = Block("Systemic Exit",
-"Graduates us intelligently to another intentional system",
-"The armature is not yet grown enough to have a clear exit point yet. This is merely the connecting interface, to be modified in accordance with the Operatoinal Frame's growth",
-1,
-10000)
+

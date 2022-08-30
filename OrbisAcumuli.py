@@ -64,7 +64,8 @@ def disclevelorbisvox(disc, counter):
     print ("  " + "Cumalitve Charge: " + colored.red(str(disclevelchargecounter)))
     
     ### #Disc hopper
-    print(hopper(disc).name) 
+    hopper_block = hopper(disc)
+    print("To work: " + hopper_block.title)
     
 def pathlevelorbisvox(path):
     pathlevelchargecounter = path_level_charge_checker(path)
