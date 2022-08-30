@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import dateutil.parser
 from pathandblocks import *
 from clint.textui import colored
+from hopper import hopper
 
                
 
@@ -62,15 +63,9 @@ def disclevelorbisvox(disc, counter):
     print(str(counter) + " " + disc.name  + " " + str(total_blocks_off_cd) + "/" + str(total_blocks) + " active" )
     print ("  " + "Cumalitve Charge: " + colored.red(str(disclevelchargecounter)))
     
-    ### #Path bark
-    for path in disc.paths:
-        total_path_blocks, offcdcounter = blockactivationcounter(path)
- 
-        print ("    " + path.name + "    " + str(offcdcounter) + "/" + str(total_path_blocks) )
-        print (" ")   
-        for block in path.blocks:
-            print("      " + block.name)
-            print(colored.red("        " + "*" * (chargechecker(block))))
+    ### #Disc hopper
+    print(hopper(disc).name) 
+    
 def pathlevelorbisvox(path):
     pathlevelchargecounter = path_level_charge_checker(path)
     pathlevelchargecounter = str(pathlevelchargecounter)

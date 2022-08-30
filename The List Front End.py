@@ -23,6 +23,8 @@ def refreshbarker(block):
     print (thenow + (block.cooldown - (thenow - blockactivation)))
     
     #Initial display
+
+
 def facade():
     #clears the stage
     whitespace(35)
@@ -36,51 +38,7 @@ def facade():
         counter = counter + 1
         whitespace(2)                          
     #Adds the gui for selecting the hopper
-    hopperslot1 = 0    
-    for _ in grossdisciplines:
-        hopperslot1 = hopperslot1 + 1
-    hopperslot2 = hopperslot1 + 1
-    
-    slot0, slot1 = hopperloader()
-    
-    whitespace(4)
-    
-    print ("Hopper: Avaliable Blocks.")    
-    print (str(hopperslot1)  + " " + slot0.title)
-    print (slot0.process)
-    print (str(hopperslot2)  + " " + slot1.title)
-    print (slot1.process)
-    #choice management
-    ## This is mostly going to be dross, as we make a single page interface
-def hopperchoice(discchoice):
-        #Procceses the input if the input would select the hopper
-    slot0, slot1 = hopperloader()
-    hopperslot1 = 0    
-    for _ in grossdisciplines:
-        hopperslot1 = hopperslot1 + 1
-    hopperslot2 = hopperslot1 + 1
-    if discchoice == hopperslot1:
-        whitespace(10)
-        print ("Name: " + slot0.title)
-        print ("Process: " + slot0.process)
-        print ("Output: " + slot0.output)
-        cooldownmarker = str(slot0.cooldown)
-        print ("Cooldown: " + cooldownmarker)
-        answer = input("Activate this block's cooldown?")
-        if answer == "y":
-            orbisaccumuli(slot0, "y")
-        interface()
-    if discchoice == hopperslot2:
-        whitespace(10)
-        print ("Name: " + slot1.title)
-        print ("Process: " + slot1.process)
-        print ("Output: " + slot1.output)
-        cooldownmarker = str(slot1.cooldown)
-        print ("Cooldown: " + cooldownmarker)
-        answer = input("Activate this block's cooldown?")
-        if answer == "y":
-            orbisaccumuli(slot1, "y")
-        interface()
+
 def discprocessor(discchoice):
     discchoice = grossdisciplines[discchoice]
     whitespace(20)
