@@ -6,7 +6,6 @@ import time
 import threading 
 from TheListBackEnd import whitespace, cooldownchecker, colored, picklejarfactory, disc_level_charge_checker
 from pathandblocks import ordered_disciplines
-from hopper import hopperloader
 from OrbisAcumuli import orbisaccumuli, orbis_rotatus, orbisvox, disclevelorbisvox, pathlevelorbisvox
 import os    
 import pickle
