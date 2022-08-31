@@ -3,8 +3,9 @@ from Cyberneticist import cyberneticist
 from IndustrialistContent import *
 from MagusContent import *
 from MonkContent import *
-
-grossdisciplines =[monk, magus, cyberneticist, industrialist]
+from Gamer_content import *
+grossdisciplines =[monk, magus, cyberneticist, industrialist, gamer]
+picklejarfactory(grossdisciplines)
 ordered_disciplines = []
 discipline_dict = {}
 for disc in grossdisciplines:
