@@ -85,9 +85,9 @@ def path_level_charge_checker(path):
     #Runs the path_level_charge_checker() on all discs
 def disc_level_charge_checker(disc):
     sum_charge_counter = 0
-    for each in disc.paths:
+    for each in disc.paths:        
         sum_charge_counter = sum_charge_counter + path_level_charge_checker(each)
-        return sum_charge_counter
+    return sum_charge_counter
 #returns the total number of charges in a path, and the total number of 'active' blocks
 def blockactivationcounter(path):
     counter_total = 0

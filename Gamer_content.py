@@ -8,7 +8,7 @@ slurm = Block ("Slurm",
 10)
 
 homecoming = Block ("Homecoming",
-"City of Heroes",
+"Hang out in one of the old MMOs, preferably with pals",
 "It's dangerously addictive!",
 (24*60),
 10)
@@ -24,11 +24,30 @@ comfort_systems = Path("Comfort_Systems",
 
 (slurm, homecoming, lets_play), 0)
 
+funny_little_games =Block ("Funny Little Games",
+"Play a game with JD",
+"JD is a good ally and a prosocial agent. Fun to game with",
+((7/3)*24*60),10)
+
+explorer_pals =Block("Explorer Pals",
+"Play a game with Alpal",
+"Together we are strong. Together we are leaders",
+((7/3)*24*60),10)
+
+skinny_box = Block("Skinny Box", 
+"play a game with Andrew",
+"he fun pal, he game good",
+((7/3)*24*60),10)
+
+
+coop= Path("Cooporitve",
+"Multiplayer is about friendship, and friendship is magic",
+(explorer_pals, funny_little_games,  skinny_box),2)
 gamer = Discipline("gamer",
 """
 play in systems
 
 """, 
 1,
-(comfort_systems,), 
+(comfort_systems,coop,), 
 60)
