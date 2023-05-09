@@ -2,11 +2,15 @@ from TheListBackEnd import *
 
 
 
-
+mecha_mantra = Block ("Mecha Mantra",
+"activate the mecha mantra",
+"empowers us to remember what we set out to attend to",
+1440,
+5)
 
 thecode = Block ("The Code",
 "Work through a mastey task on Khan academy.",
-"Familiarizes ourself with the codefication of western knowledge, particularly math. Additionally habituates the position of utilizing the monolith to be in the service of something other than dionysian hedonism.",
+"Math is the foundation of most of what we do, let's learn it from the ground up.",
 1440,
 5)
 
