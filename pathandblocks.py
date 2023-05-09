@@ -1,8 +1,7 @@
-from TheListBackEnd import *
-from Cyberneticist import cyberneticist
-from IndustrialistContent import *
-from MagusContent import *
-from MonkContent import *
+from Disciplines.Cyberneticist import cyberneticist
+from Disciplines.IndustrialistContent import *
+from Disciplines.MagusContent import *
+from Disciplines.MonkContent import *
 
 grossdisciplines =[monk, magus, cyberneticist, industrialist]
 picklejarfactory(grossdisciplines)

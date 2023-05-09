@@ -2,3 +2,6 @@
 /Blocks
 /__pycache__
 *.pyc
+# JetBrains IDE files
+.idea/
+*.iml
