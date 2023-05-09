@@ -4,7 +4,7 @@ from IndustrialistContent import *
 from MagusContent import *
 from MonkContent import *
 from Gamer_content import *
-grossdisciplines =[monk, magus, cyberneticist, industrialist, gamer]
+grossdisciplines =[monk, magus, cyberneticist, industrialist]
 picklejarfactory(grossdisciplines)
 ordered_disciplines = []
 discipline_dict = {}
