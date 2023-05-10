@@ -35,7 +35,9 @@ earth = Path("Earth",
 0)
 
 fire = Path("Fire",
-"Awareness, Passion, Power"
+"Awareness, Passion, Power",
+(),
+0)
 
 monk = Discipline("Monk", 
 """
