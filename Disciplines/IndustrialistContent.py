@@ -13,7 +13,7 @@ from TheListBackEnd import *
 
 the_search = Block("The Search",
 "improve job search tools, actively hunt, or reach out to folks",
-"Look we put in the work to get the skills, lets get paid for them!",
+"Always good to be aware of the employment environment, even when employed.",
 5040,
 5)
 
