@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from TheListBackEnd import whitespace, cooldownchecker, colored
 from pathandblocks import ordered_disciplines
 from OrbisAcumuli import orbisaccumuli, orbis_rotatus, orbisvox, disclevelorbisvox, pathlevelorbisvox
+from Carrot_Machine import celebration
 import pickle
 
 
@@ -121,6 +122,9 @@ def blockprocessor(pathchoice):
     addcharge =  input("Add a charge?")
     if addcharge == "y":
         orbisaccumuli(blockchoice, "y")
+        celebration()
+        facade()
+
 
 
 def interface():
