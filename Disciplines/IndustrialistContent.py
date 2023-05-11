@@ -11,23 +11,23 @@ from TheListBackEnd import *
 
 
 
-the_search = Block("The Search",
-"improve job search tools, actively hunt, or reach out to folks",
-"Always good to be aware of the employment environment, even when employed.",
-5040,
+code_face = Block("Code Face",
+"Work on web design class",
+"Whether we freelance, make art or sell code we're going to need a website. The face of our Digital Oikos.",
+3000,
 5)
 
 
 
 
-grid = Path("Grid",
-"Organizes the world",
-(the_search,),
-1)
+independance = Path("Independance",
+"Work to free ourself from dependance upon employment",
+                    (code_face,),
+                    1)
 
 
 
-industrialist = Discipline("Industrialist", 
+industrialist = Discipline("Industrialist",
 """
 The Industrialist
 
@@ -40,7 +40,7 @@ The Industrialist
 		Goods
 		Information
 """
-, 3, (grid,), 10)
+                           , 3, (independance,), 10)
 #The Industrialist holds on to Processes and Schedules
 
 
