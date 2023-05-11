@@ -17,7 +17,7 @@ thecode = Block ("The Code",
 mycelium = Path("Mycelium",
 "Fibrous and Rhyzomatic",
 
-(thecode,), 0)
+(mecha_mantra,thecode,), 0)
 
 cyberneticist = Discipline("Cyberneticist",
 """
