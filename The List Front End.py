@@ -21,19 +21,17 @@ def refreshbarker(block):
     #Initial display
 
 
-def facade():
-    #clears the stage
-    whitespace(35)
-    #Checks cooldowns, and turns over the cycle
-    orbis_rotatus()     
-    #Displays the choie of disciplines, the number of blocks contained, and the number of blocks off cooldown
-    counter = 0
-    for disc in ordered_disciplines:
-        whitespace(2)		
+def display_disciplines():
+    for counter, disc in enumerate(ordered_disciplines):
+        print(f"\n\n{disc.name}")
         disclevelorbisvox(disc, counter)
-        counter = counter + 1
-        whitespace(2)                          
-    #Adds the gui for selecting the hopper
+        print("\n")
+
+def facade():
+    whitespace(35)
+    orbis_rotatus()     
+    display_disciplines()
+    print("Select the hopper:")
 
 def discprocessor(discchoice):
     discchoice = ordered_disciplines[discchoice]
@@ -43,64 +41,49 @@ def discprocessor(discchoice):
     print (discchoice.flavor)
     whitespace(2)
     counter = 0        
-    
-    for path in discchoice.paths :
-        total = 0
-        offcdcounter = 0
-        for block in path.blocks:
-            total = total + 1
-            offcd = cooldownchecker(block)
-            if offcd == False:
-                offcdcounter = offcdcounter + 1
-        totalblocks = total
-        totalblocks = str(totalblocks)
-        blocksoffcd = offcdcounter
-        blocksoffcd = str(offcdcounter)
         
-        print (str(counter) + " " + path.name + " " + blocksoffcd + "/" + totalblocks + " Processes are active in this path")
+    for counter, path in enumerate(discchoice.paths):
+        total_blocks = len(path.blocks)
+        blocks_off_cooldown = sum(1 for block in path.blocks if not cooldownchecker(block))
+
+        print(f"{counter} {path.name} {blocks_off_cooldown}/{total_blocks} Processes are active in this path")
         pathlevelorbisvox(path)
         whitespace(2)
-        counter = counter + 1 
+
         for block in path.blocks:
             offcd = cooldownchecker(block)
-            attritionstatus = "Active"
-            if offcd == True:
-                attritionstatus = "Avaliable."
-            print ("    " + block.title + "  " + attritionstatus)
+            attrition_status = "Available." if offcd else "Active"
+            print(f"    {block.title}  {attrition_status}")
             orbisvox(block)
-def pathprocessor(discchoice):
-    pathchoice = input("Choose a path to explore")		
-    
-    discchoice=ordered_disciplines[discchoice]
-    pathchoice = int(pathchoice)
-    intermediary = discchoice.paths
-    pathchoice = intermediary[pathchoice]
-    
-    whitespace(20)
-    print (pathchoice.name)
-    print (pathchoice.subtitle)
-    whitespace(2)
-    
-    counter = 0
 
-    for block in pathchoice.blocks:
+
+def pathprocessor(disc_choice):
+    disc = ordered_disciplines[disc_choice]
+    path_choice = int(input("Choose a path to explore: "))
+    path = disc.paths[path_choice]
+
+    whitespace(20)
+    print(path.name)
+    print(path.subtitle)
+    whitespace(2)
+
+    for counter, block in enumerate(path.blocks):
         offcd = cooldownchecker(block)
-        attritionstatus = "Avaliable."
-        if offcd == True:
-            print (str(counter) + " " + block.title + "                     " + attritionstatus)
-        if offcd == True:
-            print (block.process )
-        if offcd == False:
-            attritionstatus = "Active"
-            print (str(counter) + " " + block.title) 
-            print (block.process) 
-            print (block.output)
-        print (block.cooldown)
-        counter = counter + 1
+        attrition_status = "Available." if offcd else "Active"
+
+        print(f"{counter} {block.title}  {attrition_status}")
+        print(block.process)
+
+        if not offcd:
+            print(block.output)
+
+        print(block.cooldown)
         orbisvox(block)
         whitespace(2)
+
     whitespace(2)
-    return(pathchoice)
+    return path
+
 def blockprocessor(pathchoice):
     blockchoice = input("Choose a block to expand")
     blockchoice = int(blockchoice)
